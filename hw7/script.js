@@ -1,16 +1,21 @@
 const menuBtn = document.querySelector("#menu-btn");
 const menuList = document.querySelector("#menu-list");
-let keepMenuOpen = false;
+let keepMenuOpen = false; // if menu is opened by a click
 
 menuBtn.addEventListener("click", () => {
-  menuList.classList.add("show-menu-list");
-  keepMenuOpen = true;
+  if (keepMenuOpen && menuList.classList.contains("show-menu-list")) {
+    menuList.classList.remove("show-menu-list");
+    keepMenuOpen = false;
+  } else {
+    menuList.classList.add("show-menu-list");
+    keepMenuOpen = true;
+  }
 });
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", (event) => {
   if (
-    e.target !== menuBtn &&
-    e.target !== menuList &&
+    event.target !== menuBtn &&
+    event.target !== menuList &&
     menuList.classList.contains("show-menu-list")
   ) {
     menuList.classList.remove("show-menu-list");
