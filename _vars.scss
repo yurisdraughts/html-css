@@ -1,0 +1,115 @@
+@use "sass:list";
+
+// CONTENT:
+// Colors
+// Fonts
+// Transitions
+// Elements
+// Other
+
+// Colors
+$text-color: #222222;
+$bottom-text-color: #222224;
+$clickable-text-color: #6f6e6e;
+$light-text-color: #fbfbfb;
+
+$light-color: #ffffff;
+$accent-color: #f16d7f;
+
+$category-background-color: rgba(33, 22, 22, 0.7);
+$items-button-color: #f26376;
+$subscribe-input-color: #e1e1e1;
+$subscribe-btn-color1: #e05c6e;
+$subscribe-btn-color2: #905991;
+
+$product-page-border-color: #eaeaea;
+$product-page-accent-color: #ef5b70;
+
+// Fonts
+@mixin font($font-weight, $font-size, $line-height) {
+  font-weight: $font-weight;
+  font-size: #{$font-size}px;
+  line-height: #{$line-height}px;
+}
+
+@mixin font314 {
+  @include font(300, 14, 17);
+}
+
+@mixin font414 {
+  @include font(400, 14, 17);
+}
+
+@mixin font724 {
+  @include font(700, 24, 30);
+}
+
+// Transitions
+@mixin trans($duration, $properties...) {
+  transition: {
+    property: $properties;
+    duration: $duration;
+    timing-function: ease-in-out;
+  }
+}
+
+@mixin trans-form {
+  @include trans(0.1s, transform);
+}
+
+@mixin trans-form3 {
+  @include trans(0.3s, transform);
+}
+
+@mixin trans-bg {
+  @include trans(0.1s, background-color);
+}
+
+// Elements
+@mixin header-icon($image, $height, $width) {
+  background-image: url("./img/#{$image}");
+  height: $height;
+  width: $width;
+}
+
+@mixin accent-btn {
+  @include font(400, 16, 19);
+  @include trans(0.1s, background-color, color);
+
+  display: block;
+  border: 1px solid #ff6a6a;
+
+  color: $items-button-color;
+  background-color: $light-color;
+
+  &:hover {
+    color: $light-color;
+    background-color: $items-button-color;
+  }
+}
+
+// Other
+@mixin page($name) {
+  &_#{$name}-page {
+    @content;
+  }
+}
+
+@mixin fill(
+  $path-element-suffix,
+  $container-element-suffix,
+  $default-color,
+  $hover-color
+) {
+  @if not & {
+    @error "This mixin has to be nested!";
+  }
+
+  &#{$path-element-suffix} {
+    fill: $default-color;
+  }
+
+  &#{$container-element-suffix}:hover &#{$path-element-suffix} {
+    fill: $hover-color;
+  }
+}
