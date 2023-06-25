@@ -45,7 +45,7 @@ $product-page-accent-color: #ef5b70;
 }
 
 // Transitions
-@mixin trans($duration, $properties...) {
+@mixin trans($properties, $duration) {
   transition: {
     property: $properties;
     duration: $duration;
@@ -54,15 +54,15 @@ $product-page-accent-color: #ef5b70;
 }
 
 @mixin trans-form {
-  @include trans(0.1s, transform);
+  @include trans(transform, 0.1s);
 }
 
 @mixin trans-form3 {
-  @include trans(0.3s, transform);
+  @include trans(transform, 0.3s);
 }
 
 @mixin trans-bg {
-  @include trans(0.1s, background-color);
+  @include trans(background-color, 0.1s);
 }
 
 // Elements
@@ -74,7 +74,7 @@ $product-page-accent-color: #ef5b70;
 
 @mixin accent-btn {
   @include font(400, 16, 19);
-  @include trans(0.1s, background-color, color);
+  @include trans("background-color, color", 0.1s);
 
   display: block;
   border: 1px solid #ff6a6a;
@@ -90,6 +90,15 @@ $product-page-accent-color: #ef5b70;
 
 // Other
 @mixin page($name) {
+  @if not & {
+    @error "This mixin has to be nested!";
+  }
+
+  $pages: [product];
+  @if not list.index($pages, $name) {
+    @error "Page with this name doesn't exist!";
+  }
+
   &_#{$name}-page {
     @content;
   }

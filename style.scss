@@ -233,17 +233,18 @@ body {
   background-color: #f7f7f7;
 
   &__img {
-    @include trans(0.3s, scale);
+    $width: 37.3vw;
+    @include trans(scale, 0.3s);
+    
     position: absolute;
     top: 11px;
-    left: 50%;
+    left: calc(50% - ($width / 2));
 
-    width: 37.3vw;
-    transform: translateX(-50%);
+    width: $width;
     scale: 1;
 
     &:hover {
-      scale: 1.01;
+      scale: 1.05;
     }
   }
 
@@ -543,7 +544,7 @@ body {
   }
 
   & &__img-wrapper::after {
-    @include trans(0.2s, background-color, opacity);
+    @include trans("background-color, opacity", 0.2s);
     display: block;
     content: "";
 
@@ -564,7 +565,7 @@ body {
 
   &__add-btn {
     @include font414;
-    @include trans(0.2s, opacity);
+    @include trans(opacity, 0.2s);
 
     display: flex;
     align-items: center;
