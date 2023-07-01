@@ -15,6 +15,7 @@ $light-text-color: #fbfbfb;
 
 $light-color: #ffffff;
 $accent-color: #f16d7f;
+$shadow-color: rgba(0, 0, 0, 0.21);
 
 $category-background-color: rgba(33, 22, 22, 0.7);
 $items-button-color: #f26376;
@@ -22,14 +23,15 @@ $subscribe-input-color: #e1e1e1;
 $subscribe-btn-color1: #e05c6e;
 $subscribe-btn-color2: #905991;
 
-$product-page-border-color: #eaeaea;
-$product-page-accent-color: #ef5b70;
+$page-border-color: #eaeaea;
+$page-border-color2: #ebebeb;
+$page-accent-color: #ef5b70;
 
 // Fonts
 @mixin font($font-weight, $font-size, $line-height) {
   font-weight: $font-weight;
-  font-size: #{$font-size}px;
-  line-height: #{$line-height}px;
+  font-size: $font-size * 1px;
+  line-height: $line-height * 1px;
 }
 
 @mixin font314 {
@@ -67,7 +69,7 @@ $product-page-accent-color: #ef5b70;
 
 // Elements
 @mixin header-icon($image, $height, $width) {
-  background-image: url("./img/#{$image}");
+  background-image: url("../img/#{$image}");
   height: $height;
   width: $width;
 }
@@ -88,13 +90,40 @@ $product-page-accent-color: #ef5b70;
   }
 }
 
+@mixin dropdown-menus {
+  @include font414;
+  display: flex;
+  justify-content: space-between;
+  color: $clickable-text-color;
+}
+
+@mixin details-summary($dropdown-icon-url) {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: url($dropdown-icon-url);
+  }
+}
+
+@mixin checkbox {
+  position: absolute;
+  visibility: hidden;
+  left: -999999px;
+}
+
 // Other
 @mixin page($name) {
   @if not & {
     @error "This mixin has to be nested!";
   }
 
-  $pages: [product];
+  $pages: product, catalog;
   @if not list.index($pages, $name) {
     @error "Page with this name doesn't exist!";
   }

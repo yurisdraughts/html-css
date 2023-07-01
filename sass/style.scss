@@ -4,6 +4,7 @@
 // CONTENT:
 // Header
 // Breadcrumbs
+// Filter
 // Product
 // Top
 // Categories
@@ -26,6 +27,10 @@ body {
   font-family: "Lato", sans-serif;
   font-style: normal;
   color: $text-color;
+}
+
+label:hover {
+  cursor: pointer;
 }
 
 .center {
@@ -106,7 +111,9 @@ body {
 .cart {
   position: relative;
 
-  &__items-number {
+  &::after {
+    display: block;
+    content: "5";
     @include font(400, 12, 14);
     position: absolute;
     top: -8px;
@@ -130,6 +137,13 @@ body {
   display: grid;
   gap: 20px;
 
+  @include page(catalog) {
+    gap: 18.5px;
+    padding: 46px 17px 16px;
+    margin-top: -30px;
+    margin-left: -17px;
+  }
+
   &,
   &__section {
     list-style-type: none;
@@ -140,7 +154,7 @@ body {
     width: 232px;
 
     background-color: $light-color;
-    box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
+    box-shadow: 6px 4px 35px $shadow-color;
     z-index: 10;
   }
 
@@ -149,19 +163,41 @@ body {
     margin-bottom: 24px;
   }
 
+  &__summary {
+    display: block;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
   &__section {
     display: grid;
     gap: 11px;
+
+    @include page(catalog) {
+      margin-top: 24.5px;
+    }
   }
 
   &__section-header {
     @include font414;
     margin-bottom: 12px;
     color: $accent-color;
+
+    @include page(catalog) {
+      border-left: 5px solid $page-accent-color;
+      border-bottom: 1px solid $page-border-color2;
+      margin-bottom: 0;
+      padding: 11.5px 11px;
+      cursor: pointer;
+    }
   }
 
   &__section-item {
     @include trans-form;
+    @include font414;
+    color: $clickable-text-color;
     padding-left: 23px;
     transform: translateX(0) scale(1);
   }
@@ -178,6 +214,14 @@ body {
 
   &__section-item:hover .menu-list__link {
     text-decoration: underline;
+  }
+
+  &__checkbox {
+    @include checkbox;
+  }
+
+  &__checkbox:checked + &__label {
+    color: $page-accent-color;
   }
 }
 
@@ -223,19 +267,100 @@ body {
   }
 }
 
+// Filter
+.filter {
+  &__wrapper {
+    display: flex;
+    gap: 20vw;
+    margin: 51px 0;
+  }
+
+  &__main-filter {
+    justify-self: start;
+  }
+
+  &__filters {
+    @include dropdown-menus;
+    gap: 28px;
+  }
+
+  &__filter {
+    position: relative;
+  }
+
+  &__summary {
+    @include details-summary("../img/dropdown.svg");
+    gap: 10px;
+  }
+
+  &__list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 5px;
+    padding: 9px 9px 12px;
+    width: 79px;
+    z-index: 10;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 6px 4px 35px 0px $shadow-color;
+  }
+
+  &__checkbox {
+    @include checkbox;
+  }
+
+  &__checkbox-svg {
+    margin-right: 9px;
+  }
+
+  &__checkbox:checked + &__label &__checkbox-svg-path {
+    fill: $page-accent-color;
+  }
+}
+
+.main-filter {
+  @include dropdown-menus;
+  position: relative;
+  color: #000;
+
+  &[open] {
+    color: $page-accent-color;
+  }
+
+  &__summary {
+    @include details-summary("../img/main-filter.svg");
+    gap: 11px;
+    z-index: 30;
+  }
+
+  &[open] &__summary {
+    @include details-summary("../img/main-filter-open.svg");
+  }
+
+  &__menu-list {
+    position: absolute;
+    width: 360px;
+    z-index: 20;
+    background: #fff;
+    box-shadow: 6px 4px 35px 0px $shadow-color;
+  }
+}
+
 // Product
 .prod-images {
-  @include fill(__nav-btn-path, __nav-btn, black, $accent-color);
+  @include fill(__nav-btn-path, __nav-btn, #000, $accent-color);
   position: relative;
 
-  border: 1px $product-page-border-color solid;
+  border: 1px $page-border-color solid;
   height: 777px;
   background-color: #f7f7f7;
 
   &__img {
     $width: 37.3vw;
     @include trans(scale, 0.3s);
-    
+
     position: absolute;
     top: 11px;
     left: calc(50% - ($width / 2));
@@ -274,7 +399,7 @@ body {
   @include fill(
     __img-path,
     __add-btn,
-    $product-page-accent-color,
+    $page-accent-color,
     $light-color
   );
 
@@ -285,7 +410,7 @@ body {
   position: absolute;
   top: -65px;
 
-  border: 1px $product-page-border-color solid;
+  border: 1px $page-border-color solid;
   padding: 64.5px 0;
   width: 100%;
   background-color: $light-color;
@@ -300,14 +425,14 @@ body {
       margin: 12px 0;
       height: 3px;
       width: 63px;
-      background-color: $product-page-accent-color;
+      background-color: $page-accent-color;
     }
 
     &2 {
       margin: 65px 0;
       height: 2px;
       width: 40vw;
-      background-color: $product-page-border-color;
+      background-color: $page-border-color;
     }
   }
 
@@ -336,22 +461,17 @@ body {
   &__price {
     @include font(300, 24, 29);
     margin-top: 32px;
-    color: $product-page-accent-color;
+    color: $page-accent-color;
   }
 
   &__options {
-    @include font414;
-    display: flex;
-    justify-content: space-between;
+    @include dropdown-menus;
     gap: 23px;
-    color: $clickable-text-color;
   }
 
-  &__option {
-    display: flex;
-    align-items: center;
+  &__option-summary {
+    @include details-summary("../img/dropdown.svg");
     gap: 9px;
-    cursor: pointer;
   }
 
   &__add-btn {
@@ -364,6 +484,10 @@ body {
     margin-top: 63.5px;
     padding: 14.5px 56.57px 8.5px 23.5px;
     cursor: pointer;
+  }
+
+  &__img-path {
+    @include trans(fill, 0.1s);
   }
 }
 
@@ -444,21 +568,21 @@ body {
   }
 
   &__category_women {
-    background-image: url("./img/women.jpg");
+    background-image: url("../img/women.jpg");
   }
 
   &__category_men {
-    background-image: url("./img/men.jpg");
+    background-image: url("../img/men.jpg");
   }
 
   &__category_kids {
-    background-image: url("./img/kids.jpg");
+    background-image: url("../img/kids.jpg");
   }
 
   &__category_accessories {
     grid-column: span 3;
     aspect-ratio: 57 / 9;
-    background-image: url("./img/accessories.jpg");
+    background-image: url("../img/accessories.jpg");
   }
 }
 
@@ -493,6 +617,10 @@ body {
 
   @include page(product) {
     padding: 128px 0;
+  }
+
+  @include page(catalog) {
+    padding: 13px 0 96px;
   }
 
   &__wrapper {
@@ -534,6 +662,10 @@ body {
     padding: 14px 39px 14px;
     text-decoration: none;
   }
+
+  &__pagination {
+    margin-top: 48px;
+  }
 }
 
 .item {
@@ -565,7 +697,7 @@ body {
 
   &__add-btn {
     @include font414;
-    @include trans(opacity, 0.2s);
+    @include trans("opacity, background-color, color", 0.2s);
 
     display: flex;
     align-items: center;
@@ -588,6 +720,11 @@ body {
     transform: translate(-50%, -50%);
     cursor: pointer;
     opacity: 0;
+
+    &:hover {
+      background-color: $light-color;
+      color: rgba(58, 56, 56, 0.86);
+    }
   }
 
   &:hover &__add-btn {
@@ -599,9 +736,20 @@ body {
     width: 26px;
   }
 
+  &__cart-icon-path {
+    @include trans(fill, 0.2s);
+  }
+
+  @include fill(__cart-icon-path, __add-btn, #e8e8e8, rgba(58, 56, 56, 0.86));
+
   &__img {
     display: block;
     width: 100%;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
   }
 
   &__text {
@@ -612,7 +760,7 @@ body {
 
   &__name {
     @include font(400, 13, 16);
-    color: #000000;
+    color: #000;
   }
 
   &__description {
@@ -623,6 +771,38 @@ body {
   &__price {
     @include font(400, 16, 19);
     color: $accent-color;
+  }
+}
+
+.pagination {
+  @include font(300, 16, 19);
+  display: flex;
+  align-items: center;
+  border: 1px solid $page-border-color2;
+  border-radius: 3px;
+  padding: 12px 16px 13px;
+  color: #c4c4c4;
+
+  &__link {
+    text-decoration: none;
+    color: #c4c4c4;
+
+    &:hover,
+    &_active {
+      color: $page-accent-color;
+    }
+  }
+
+  &__link:hover &__nav-icon {
+    fill: $page-accent-color;
+  }
+
+  &__break {
+    visibility: hidden;
+
+    &_visible {
+      visibility: visible;
+    }
   }
 }
 
@@ -666,7 +846,7 @@ body {
 // Subscribe
 .subscribe {
   background: {
-    image: url("./img/subscribe_background.png");
+    image: url("../img/subscribe_background.png");
     position: center center;
     size: cover;
   }
@@ -764,6 +944,17 @@ body {
       direction: alternate;
       timing-function: ease-in-out;
     }
+
+    @keyframes subscribe {
+      from {
+        background-color: $subscribe-btn-color1;
+        color: $light-color;
+      }
+      to {
+        background-color: $subscribe-btn-color2;
+        color: $light-color;
+      }
+    }
   }
 
   &__btn:hover {
@@ -794,7 +985,7 @@ body {
 }
 
 .socials {
-  @include fill(__img-path, __link, black, $light-color);
+  @include fill(__img-path, __link, #000, $light-color);
   display: flex;
   gap: 7.29px;
 
@@ -815,17 +1006,9 @@ body {
   &__link:hover {
     background-color: $accent-color;
   }
-}
 
-// Animation
-@keyframes subscribe {
-  from {
-    background-color: $subscribe-btn-color1;
-    color: $light-color;
-  }
-  to {
-    background-color: $subscribe-btn-color2;
-    color: $light-color;
+  &__img-path {
+    @include trans(fill, 0.1s);
   }
 }
 
