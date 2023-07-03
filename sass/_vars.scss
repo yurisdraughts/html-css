@@ -25,6 +25,7 @@ $subscribe-btn-color2: #905991;
 
 $page-border-color: #eaeaea;
 $page-border-color2: #ebebeb;
+$page-border-color3: #a4a4a4;
 $page-accent-color: #ef5b70;
 
 // Fonts
@@ -44,6 +45,10 @@ $page-accent-color: #ef5b70;
 
 @mixin font724 {
   @include font(700, 24, 30);
+}
+
+@mixin font316 {
+  @include font(300, 16, 19);
 }
 
 // Transitions

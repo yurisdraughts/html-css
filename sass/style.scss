@@ -6,6 +6,7 @@
 // Breadcrumbs
 // Filter
 // Product
+// Shopping cart
 // Top
 // Categories
 // Items
@@ -36,6 +37,10 @@ label:hover {
 .center {
   max-width: 71.25vw;
   margin: 0 auto;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 // Header
@@ -252,16 +257,23 @@ label:hover {
       text-decoration: underline;
     }
 
-    &_main,
-    &_current {
-      color: $accent-color;
-    }
-
     &_main {
       @include font724;
+      color: $accent-color;
+    }
+  }
+
+  &__links > &__link {
+    &:not(:last-child) {
+      &::after {
+        display: inline-block;
+        content: "/";
+        margin: 0 5px;
+      }
     }
 
-    &_current {
+    &:last-child {
+      color: $accent-color;
       font-weight: bold;
     }
   }
@@ -303,7 +315,7 @@ label:hover {
     width: 79px;
     z-index: 10;
     list-style: none;
-    background-color: #fff;
+    background-color: $light-color;
     box-shadow: 6px 4px 35px 0px $shadow-color;
   }
 
@@ -343,7 +355,7 @@ label:hover {
     position: absolute;
     width: 360px;
     z-index: 20;
-    background: #fff;
+    background: $light-color;
     box-shadow: 6px 4px 35px 0px $shadow-color;
   }
 }
@@ -396,12 +408,7 @@ label:hover {
 }
 
 .prod-info {
-  @include fill(
-    __img-path,
-    __add-btn,
-    $page-accent-color,
-    $light-color
-  );
+  @include fill(__img-path, __add-btn, $page-accent-color, $light-color);
 
   display: flex;
   flex-direction: column;
@@ -488,6 +495,184 @@ label:hover {
 
   &__img-path {
     @include trans(fill, 0.1s);
+  }
+}
+
+// Shopping cart
+.shopping-cart {
+  padding: 96px 0 128px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__btn-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__form {
+    width: 22.5vw;
+  }
+
+  &__button {
+    @include font314;
+    @include trans("border-color, background-color, color", 0.1s);
+    display: block;
+
+    padding: 16px 40px;
+    width: fit-content;
+
+    border: 1px solid $page-border-color3;
+    background-color: $light-color;
+
+    font-family: inherit;
+    color: $text-color;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $accent-color;
+      background-color: $accent-color;
+      color: $light-color;
+    }
+
+    &_quote {
+      padding: 10px 14.2px 12px 15.2px;
+    }
+
+    &_cart-result-form {
+      border-color: $accent-color;
+      background-color: $accent-color;
+      color: $light-color;
+
+      &:hover {
+        background-color: $light-color;
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+.cart-item {
+  display: flex;
+  margin-bottom: 40px;
+  box-shadow: 17px 19px 24px rgba(0, 0, 0, 0.13);
+
+  &__img {
+    display: block;
+    width: 16.375vw;
+  }
+
+  &__info {
+    position: relative;
+    padding: 22px 31px;
+    width: 24.375vw;
+  }
+
+  &__delete-btn {
+    position: absolute;
+    top: 28px;
+    right: 22px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  @include fill(__delete-btn-path, __delete-btn, #575757, $accent-color);
+
+  &__name {
+    @include font(400, 24, 29);
+    width: 16.375vw;
+    margin-bottom: 42px;
+  }
+
+  &__text {
+    @include font(400, 22, 26);
+    color: #575757;
+
+    &_price {
+      color: $page-accent-color;
+    }
+  }
+
+  &__quantity {
+    border: 1px $page-border-color solid;
+    margin-left: 24px;
+    width: 44px;
+    height: 24.949px;
+    vertical-align: middle;
+    text-align: center;
+    color: #656565;
+  }
+
+  &__delete-btn {
+    position: absolute;
+  }
+}
+
+.cart-form {
+  &__heading {
+    @include font316;
+    margin-bottom: 20px;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  &__input {
+    @include font(300, 13, 16);
+    padding: 13px 17px 16px;
+    border: 1px $page-border-color3 solid;
+    color: $text-color;
+
+    &::placeholder {
+      color: #b1b1b1;
+    }
+  }
+
+  &__result {
+    margin-top: 57px;
+  }
+}
+
+.cart-form-result {
+  padding: 39px 43px 42px;
+  background-color: #f5f3f3;
+
+  &__text {
+    text-align: right;
+
+    &_sub {
+      @include font(400, 11, 13);
+      margin-bottom: 12px;
+      color: #4a4a4a
+    }
+
+    &_grand {
+      @include font316;
+    }
+
+    &_grand-price {
+      color: $accent-color;
+      font-weight: bold;
+    }
+
+    &_price {
+      display: inline-block;
+      margin-left: 24px;
+    }
+  }
+
+  &__separator {
+    margin: 21px 0 17px;
+    height: 1px;
+    background-color: #e2e2e2;
   }
 }
 
@@ -775,7 +960,7 @@ label:hover {
 }
 
 .pagination {
-  @include font(300, 16, 19);
+  @include font316;
   display: flex;
   align-items: center;
   border: 1px solid $page-border-color2;
