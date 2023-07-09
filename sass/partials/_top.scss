@@ -1,0 +1,59 @@
+@use "vars" as *;
+
+.top {
+  display: flex;
+  align-items: start;
+  height: fit-content;
+  background-color: #f1e4e6;
+
+  &__img {
+    @include trans-form3;
+    display: block;
+    width: 50%;
+    margin-right: 4vw;
+    transform: translateX(0);
+  }
+
+  &__img:hover {
+    transform: translateX(-2%);
+  }
+
+  &__heading {
+    margin-top: 18vw;
+  }
+}
+
+.top-heading {
+  @include trans-form3;
+  display: grid;
+  column-gap: 16px;
+  grid-template-areas:
+    "decoration first-line"
+    "decoration second-line";
+  transform: translateX(0);
+
+  &:hover {
+    transform: translateX(2%);
+  }
+
+  &__decoration {
+    grid-area: decoration;
+    height: 92px;
+    width: 12px;
+    background-color: $accent-color;
+  }
+
+  &__first-line {
+    @include font(900, 48, 58);
+    grid-area: first-line;
+  }
+
+  &__second-line {
+    @include font(700, 32, 38);
+    grid-area: second-line;
+  }
+
+  &__second-line_accent {
+    color: $accent-color;
+  }
+}

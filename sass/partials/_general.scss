@@ -1,0 +1,30 @@
+@use "vars" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  color: $text-color;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+.center {
+  max-width: 71.25vw;
+  margin: 0 auto;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.page-accent-color {
+  color: $page-accent-color;
+}

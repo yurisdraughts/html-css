@@ -1,0 +1,81 @@
+@use "vars" as *;
+
+.filter {
+  &__wrapper {
+    display: flex;
+    gap: 20vw;
+    margin: 51px 0;
+  }
+
+  &__main-filter {
+    justify-self: start;
+  }
+
+  &__filters {
+    @include dropdown-menus;
+    gap: 28px;
+  }
+
+  &__filter {
+    position: relative;
+  }
+
+  &__summary {
+    @include details-summary("../img/dropdown.svg");
+    gap: 10px;
+  }
+
+  &__list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 5px;
+    padding: 9px 9px 12px;
+    width: 79px;
+    z-index: 10;
+    list-style: none;
+    background-color: $light-color;
+    box-shadow: 6px 4px 35px 0px $shadow-color;
+  }
+
+  &__checkbox {
+    @include checkbox;
+  }
+
+  &__checkbox-svg {
+    margin-right: 9px;
+  }
+
+  &__checkbox:checked + &__label &__checkbox-svg-path {
+    fill: $page-accent-color;
+  }
+}
+
+.main-filter {
+  @include dropdown-menus;
+  position: relative;
+  color: #000;
+
+  &[open] {
+    color: $page-accent-color;
+  }
+
+  &__summary {
+    @include details-summary("../img/main-filter.svg");
+    gap: 11px;
+    z-index: 30;
+  }
+
+  &[open] &__summary {
+    @include details-summary("../img/main-filter-open.svg");
+  }
+
+  &__menu-list {
+    position: absolute;
+    width: 360px;
+    z-index: 20;
+    background: $light-color;
+    box-shadow: 6px 4px 35px 0px $shadow-color;
+  }
+}

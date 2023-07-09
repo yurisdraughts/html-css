@@ -128,7 +128,7 @@ $page-accent-color: #ef5b70;
     @error "This mixin has to be nested!";
   }
 
-  $pages: product, catalog;
+  $pages: product, catalog, cart;
   @if not list.index($pages, $name) {
     @error "Page with this name doesn't exist!";
   }

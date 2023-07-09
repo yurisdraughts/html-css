@@ -1,0 +1,37 @@
+@use "vars" as *;
+
+.features {
+  padding: 104px 0;
+  background-color: $bottom-text-color;
+  color: $light-text-color;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+}
+
+.feature {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+
+  &__img {
+    @include trans-form;
+    transform: scale(1);
+  }
+
+  &:hover &__img {
+    transform: scale(1.1);
+  }
+
+  &__heading {
+    @include font(400, 20, 24);
+  }
+
+  &__description {
+    @include font314;
+    text-align: center;
+  }
+}

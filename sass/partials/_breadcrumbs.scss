@@ -1,0 +1,49 @@
+@use "vars" as *;
+
+.breadcrumbs {
+  background-color: #f8f3f4;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__heading {
+    margin: 60px 0;
+  }
+
+  &__links,
+  &__link {
+    color: #636363;
+  }
+
+  &__link {
+    @include font314;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &_main {
+      @include font724;
+      color: $accent-color;
+    }
+  }
+
+  &__links > &__link {
+    &:not(:last-child) {
+      &::after {
+        display: inline-block;
+        content: "/";
+        margin: 0 5px;
+      }
+    }
+
+    &:last-child {
+      color: $accent-color;
+      font-weight: bold;
+    }
+  }
+}

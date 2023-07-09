@@ -1,0 +1,97 @@
+@use "vars" as *;
+
+.header {
+  position: relative;
+  height: 75px;
+  background-color: $text-color;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: end;
+  }
+
+  &__left {
+    gap: 41px;
+    margin: 18px 0 19px;
+  }
+
+  &__right {
+    gap: 33px;
+    margin: 18px 0 18px;
+  }
+
+  &__link {
+    @include trans-form;
+    display: block;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transform: scale(1);
+  }
+
+  &__link:hover {
+    transform: scale(1.1);
+  }
+
+  &__logo {
+    @include header-icon("logo.svg", 38px, 44px);
+  }
+
+  &__search {
+    @include header-icon("search.svg", 26.79px, 26px);
+  }
+
+  &__menu {
+    @include header-icon("menu.svg", 23px, 32px);
+  }
+
+  &__profile {
+    @include header-icon("profile.svg", 29px, 29px);
+  }
+
+  &__cart {
+    @include header-icon("cart.svg", 29px, 32px);
+  }
+
+  &__menu-list {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+  }
+}
+
+.cart {
+  position: relative;
+
+  &::after {
+    display: block;
+    content: "5";
+    @include font(400, 12, 14);
+    position: absolute;
+    top: -8px;
+    right: -9px;
+
+    border-radius: 50%;
+    width: 19px;
+    height: 19px;
+
+    color: $light-color;
+    background-color: $accent-color;
+    text-align: center;
+  }
+
+  @include page(cart) {
+    &::after {
+      display: none;
+    }
+  }
+}

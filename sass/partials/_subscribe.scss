@@ -1,0 +1,130 @@
+@use "sass:color";
+@use "vars" as *;
+
+.subscribe {
+  background: {
+    image: url("../img/subscribe_background.png");
+    position: center center;
+    size: cover;
+  }
+  color: $bottom-text-color;
+  text-align: center;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 448px;
+  }
+
+  &__left {
+    max-width: 359.45px;
+  }
+
+  &__img {
+    @include trans-form3;
+    width: 96px;
+    transform: scale(1);
+  }
+
+  &__left:hover &__img {
+    transform: scale(1.1);
+  }
+
+  &__img-caption {
+    @include font(400, 20, 24);
+    margin-top: 30px;
+  }
+
+  &__img-caption_italic {
+    font-style: italic;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__heading {
+    @include font724;
+  }
+
+  &__subheading {
+    @include font(400, 18, 30);
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    margin-top: 32px;
+  }
+
+  &__input,
+  &__btn {
+    @include font414;
+    flex: 1;
+    border: none;
+    height: 49px;
+  }
+
+  &__input {
+    @include trans-bg;
+    padding: 0 22px;
+    border-radius: 22px 0 0 22px;
+
+    background-color: $subscribe-input-color;
+    color: $bottom-text-color;
+  }
+
+  &__input:hover {
+    background-color: color.adjust(
+      $subscribe-input-color,
+      $red: +16,
+      $green: +16,
+      $blue: +16
+    );
+  }
+
+  &__btn {
+    border-radius: 0 22px 22px 0;
+    padding: 0 22px;
+
+    background-color: $subscribe-btn-color1;
+    color: $light-color;
+    cursor: pointer;
+
+    animation: {
+      duration: 0.5s;
+      name: subscribe;
+      iteration-count: infinite;
+      direction: alternate;
+      timing-function: ease-in-out;
+    }
+
+    @keyframes subscribe {
+      from {
+        background-color: $subscribe-btn-color1;
+        color: $light-color;
+      }
+      to {
+        background-color: $subscribe-btn-color2;
+        color: $light-color;
+      }
+    }
+  }
+
+  &__btn:hover {
+    background-color: $subscribe-btn-color2;
+    color: $light-color;
+    animation: none;
+  }
+
+  &__input::placeholder {
+    opacity: 0.67;
+  }
+
+  &__input:hover + &__btn {
+    animation: none;
+  }
+}

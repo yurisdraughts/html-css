@@ -1,0 +1,40 @@
+@use "vars" as *;
+
+.footer {
+  padding: 24px 0;
+  background-color: $bottom-text-color;
+  color: $light-text-color;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.socials {
+  @include fill(__img-path, __link, #000, $light-color);
+  display: flex;
+  gap: 7.29px;
+
+  &__link {
+    @include trans-bg;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    height: 32px;
+    width: 32px;
+
+    background-color: $light-color;
+    text-decoration: none;
+  }
+
+  &__link:hover {
+    background-color: $accent-color;
+  }
+
+  &__img-path {
+    @include trans(fill, 0.1s);
+  }
+}

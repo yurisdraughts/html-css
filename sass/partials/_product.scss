@@ -1,0 +1,138 @@
+@use "vars" as *;
+
+.prod-images {
+  @include fill(__nav-btn-path, __nav-btn, #000, $accent-color);
+  position: relative;
+
+  border: 1px $page-border-color solid;
+  height: 777px;
+  background-color: #f7f7f7;
+
+  &__img {
+    $width: 37.3vw;
+    @include trans(scale, 0.3s);
+
+    position: absolute;
+    top: 11px;
+    left: calc(50% - ($width / 2));
+
+    width: $width;
+    scale: 1;
+
+    &:hover {
+      scale: 1.05;
+    }
+  }
+
+  &__nav-btn {
+    position: absolute;
+    top: 50%;
+
+    border: none;
+    width: 47px;
+    height: 47px;
+
+    background-color: rgba(42, 42, 42, 0.149);
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    &_prev {
+      left: 0;
+    }
+
+    &_next {
+      right: 0;
+    }
+  }
+}
+
+.prod-info {
+  @include fill(__img-path, __add-btn, $page-accent-color, $light-color);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: -65px;
+
+  border: 1px $page-border-color solid;
+  padding: 64.5px 0;
+  width: 100%;
+  background-color: $light-color;
+
+  &__wrapper {
+    position: relative;
+    height: 536px;
+  }
+
+  &__decorative-line {
+    &1 {
+      margin: 12px 0;
+      height: 3px;
+      width: 63px;
+      background-color: $page-accent-color;
+    }
+
+    &2 {
+      margin: 65px 0;
+      height: 2px;
+      width: 40vw;
+      background-color: $page-border-color;
+    }
+  }
+
+  &__category {
+    @include font314;
+    color: $accent-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__name {
+    @include font(300, 18, 22);
+    margin-bottom: 48.5px;
+    color: #4d4d4d;
+  }
+
+  &__description {
+    @include font314;
+    width: 34.5vw;
+    text-align: center;
+  }
+
+  &__price {
+    @include font(300, 24, 29);
+    margin-top: 32px;
+    color: $page-accent-color;
+  }
+
+  &__options {
+    @include dropdown-menus;
+    gap: 23px;
+  }
+
+  &__option-summary {
+    @include details-summary("../img/dropdown.svg");
+    gap: 9px;
+  }
+
+  &__add-btn {
+    @include accent-btn;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+
+    margin-top: 63.5px;
+    padding: 14.5px 56.57px 8.5px 23.5px;
+    cursor: pointer;
+  }
+
+  &__img-path {
+    @include trans(fill, 0.1s);
+  }
+}

@@ -1,0 +1,62 @@
+@use "sass:color";
+@use "vars" as *;
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 65px 0 96px;
+
+  &__category {
+    display: grid;
+    aspect-ratio: 18 / 13;
+    background: {
+      size: contain;
+      repeat: no-repeat;
+    }
+    text-decoration: none;
+  }
+
+  &__category_women {
+    background-image: url("../img/women.jpg");
+  }
+
+  &__category_men {
+    background-image: url("../img/men.jpg");
+  }
+
+  &__category_kids {
+    background-image: url("../img/kids.jpg");
+  }
+
+  &__category_accessories {
+    grid-column: span 3;
+    aspect-ratio: 57 / 9;
+    background-image: url("../img/accessories.jpg");
+  }
+}
+
+.category {
+  @include trans-bg;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  background-color: $category-background-color;
+
+  &:hover {
+    background-color: color.adjust(
+      $color: $category-background-color,
+      $alpha: -0.2
+    );
+  }
+
+  &__subheading {
+    @include font(400, 16, 19);
+    color: $light-color;
+  }
+
+  &__heading {
+    @include font724;
+    color: $accent-color;
+  }
+}
