@@ -405,10 +405,10 @@ label:hover {
   gap: 8vw;
 }
 .registration__form {
-  flex-basis: 360;
+  flex-basis: 360px;
 }
 .registration__info {
-  flex-basis: 652;
+  flex-basis: 652px;
   color: #000000;
 }
 .registration__text {
@@ -524,6 +524,27 @@ label:hover {
   .center {
     max-width: 95.64vw;
   }
+  .breadcrumbs__link_main {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .registration__wrapper {
+    flex-direction: row;
+    gap: 22px;
+  }
+  .registration__info {
+    flex-basis: 354px;
+  }
+  .registration__text {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .filter__wrapper {
+    justify-content: space-between;
+    margin: 24px 0;
+  }
   .top-heading__decoration {
     left: 425px;
     height: 92px;
@@ -539,6 +560,66 @@ label:hover {
     font-size: 24px;
     line-height: 30px;
   }
+  .product {
+    border-top: 1px #eaeaea solid;
+    border-bottom: 1px #eaeaea solid;
+  }
+  .prod-info {
+    border: none;
+  }
+  .prod-info, .prod-info * {
+    position: static;
+  }
+  .prod-info, .prod-info__wrapper {
+    height: fit-content;
+  }
+  .prod-info__description {
+    width: 72.2vw;
+  }
+  .shopping-cart {
+    padding-top: 59px;
+  }
+  .shopping-cart__items {
+    display: flex;
+    flex-direction: column;
+  }
+  .shopping-cart__btn-container {
+    align-self: center;
+    gap: 48px;
+  }
+  .shopping-cart__button_quote {
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .shopping-cart__button_cart-result-form {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .shopping-cart__wrapper {
+    flex-direction: column;
+  }
+  .cart-item__info {
+    width: 100%;
+  }
+  .cart-item__img, .cart-item__name {
+    width: 34.11458vw;
+  }
+  .cart-form {
+    margin-top: 64px;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: start;
+  }
+  .cart-form__inputs {
+    margin-bottom: 23.5px;
+  }
+  .cart-form__result {
+    margin-top: 39px;
+  }
   .categories {
     gap: 19px;
     padding-bottom: 110px;
@@ -553,6 +634,15 @@ label:hover {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-bottom: 32.48px;
+  }
+  .items__main > :last-child {
+    display: none;
+  }
+  .items__pagination {
+    margin-top: 7.52px;
+  }
+  .items_catalog-page {
+    padding: 16px 0 63px;
   }
   .features {
     padding: 48.16px 0 64px;

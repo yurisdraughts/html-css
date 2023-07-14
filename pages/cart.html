@@ -203,42 +203,48 @@
             </div>
           </div>
           <form class="shopping-cart__form cart-form">
-            <h2 class="cart-form__heading">SHIPPING ADRESS</h2>
-            <div class="cart-form__inputs">
-              <input
-                class="cart-form__input"
-                type="text"
-                name="country"
-                id="country"
-                placeholder="Bangladesh"
-                autocomplete="country-name"
-              />
-              <input
-                class="cart-form__input"
-                type="text"
-                name="state"
-                id="state"
-                placeholder="State"
-                autocomplete="address-level1"
-              />
-              <input
-                class="cart-form__input"
-                type="text"
-                name="postcode"
-                id="postcode"
-                placeholder="Postcode / Zip"
-                autocomplete="postal-code"
-              />
+            <div>
+              <h2 class="cart-form__heading">SHIPPING ADRESS</h2>
+              <div class="cart-form__inputs">
+                <input
+                  class="cart-form__input"
+                  type="text"
+                  name="country"
+                  id="country"
+                  placeholder="Bangladesh"
+                  autocomplete="country-name"
+                />
+                <input
+                  class="cart-form__input"
+                  type="text"
+                  name="state"
+                  id="state"
+                  placeholder="State"
+                  autocomplete="address-level1"
+                />
+                <input
+                  class="cart-form__input"
+                  type="text"
+                  name="postcode"
+                  id="postcode"
+                  placeholder="Postcode / Zip"
+                  autocomplete="postal-code"
+                />
+              </div>
+              <button
+                type="button"
+                class="shopping-cart__button shopping-cart__button_quote"
+              >
+                GET A QUOTE
+              </button>
             </div>
-            <button
-              type="button"
-              class="shopping-cart__button shopping-cart__button_quote"
-            >
-              GET A QUOTE
-            </button>
             <div class="cart-form__result cart-form-result">
               <p class="cart-form-result__text cart-form-result__text_sub">
-                SUB TOTAL <span class="cart-form-result__text cart-form-result__text_price">$900</span>
+                SUB TOTAL
+                <span
+                  class="cart-form-result__text cart-form-result__text_price"
+                  >$900</span
+                >
               </p>
               <p class="cart-form-result__text cart-form-result__text_grand">
                 GRAND TOTAL

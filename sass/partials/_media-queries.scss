@@ -23,6 +23,36 @@
     max-width: 95.64vw;
   }
 
+  .breadcrumbs {
+    &__link {
+      &_main {
+        @include font(400, 24, 29);
+      }
+    }
+  }
+
+  .registration {
+    &__wrapper {
+      flex-direction: row;
+      gap: 22px;
+    }
+
+    &__info {
+      flex-basis: 354px;
+    }
+
+    &__text {
+      @include font(300, 16, 19);
+    }
+  }
+
+  .filter {
+    &__wrapper {
+      justify-content: space-between;
+      margin: 24px 0;
+    }
+  }
+
   .top-heading {
     &__decoration {
       left: 425px;
@@ -37,6 +67,86 @@
 
     &__second-line {
       @include font724;
+    }
+  }
+
+  .product {
+    border: {
+      top: 1px $page-border-color solid;
+      bottom: 1px $page-border-color solid;
+    }
+  }
+
+  .prod-info {
+    border: none;
+    &,
+    & * {
+      position: static;
+    }
+
+    &,
+    &__wrapper {
+      height: fit-content;
+    }
+
+    &__description {
+      width: 72.2vw;
+    }
+  }
+
+  .shopping-cart {
+    padding-top: 59px;
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__btn-container {
+      align-self: center;
+      gap: 48px;
+    }
+
+    &__button {
+      &_quote {
+        @include font(300, 11, 13);
+      }
+
+      &_cart-result-form {
+        @include font(300, 16, 19);
+      }
+    }
+
+    &__wrapper {
+      flex-direction: column;
+    }
+  }
+
+  .cart-item {
+    &__info {
+      width: 100%;
+    }
+
+    &__img,
+    &__name {
+      width: 34.11458vw;
+    }
+  }
+
+  .cart-form {
+    margin-top: 64px;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: start;
+
+    &__inputs {
+      margin-bottom: 23.5px;
+    }
+
+    &__result {
+      margin-top: 39px;
     }
   }
 
@@ -58,6 +168,18 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
       margin-bottom: 32.48px;
+
+      > :last-child {
+        display: none;
+      }
+    }
+
+    &__pagination {
+      margin-top: 7.52px;
+    }
+
+    @include page(catalog) {
+      padding: 16px 0 63px;
     }
   }
 
